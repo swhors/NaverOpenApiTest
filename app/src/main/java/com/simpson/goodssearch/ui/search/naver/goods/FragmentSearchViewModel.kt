@@ -12,7 +12,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class FragmentSearchViewModel(private val modelNaver: NaverDataModel) : BaseKotlinViewModel() {
-    private val _tag = "FragmentNavShopApiViewModel"
+    private val _tag = "FragmentSearchViewModel"
 
     private val _naverSearchResponseLiveData = MutableLiveData<GoodsResponse>()
     val naverGoodsResponseLiveData: LiveData<GoodsResponse>

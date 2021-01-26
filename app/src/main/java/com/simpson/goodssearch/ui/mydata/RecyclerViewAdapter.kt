@@ -17,15 +17,11 @@ class RecyclerViewAdapter(val _sqLiteCtl: SQLiteCtl): RecyclerView.Adapter<Recyc
     class ItemHolder(parent:ViewGroup, _sqLiteCtl: SQLiteCtl):RecyclerView.ViewHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.goods_list_view, parent, false)
     ) {
-        val sqLiteCtl = _sqLiteCtl
         fun onBind(item: GoodItem){
             itemView.run {
                 itemView.text_title.text = item.title
                 itemView.text_lprice.text = item.lprice.toString()
                 itemView.text_hprice.text = item.hprice.toString()
-//                itemView.setOnClickListener {
-//                    sqLiteCtl.insert("test", 1, "1", "1", "1", 1,100)
-//                }
             }
         }
     }

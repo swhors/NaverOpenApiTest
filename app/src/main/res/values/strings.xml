@@ -30,5 +30,6 @@
     <string name="label_hot_keyword">Hot Keyword</string>
     <string name="label_goods_name">Goods Name</string>
     <string name="label_item_cnt_max">Max Item Count</string>
+    <string name="label_mall">Mall</string>
     <string name="label_sort">Sort</string>
 </resources>

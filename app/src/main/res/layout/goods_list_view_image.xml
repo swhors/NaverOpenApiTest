@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/item_text_layout"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="4dp"
     android:layout_marginBottom="4dp"
@@ -11,13 +11,20 @@
     android:gravity="center"
     android:orientation="horizontal">
 
+    <ImageView
+        android:id="@+id/image_good"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:contentDescription="@string/label_my_data"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <TextView
         android:id="@+id/text_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintWidth_percent="0.3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_good"
         android:paddingStart="@dimen/activity_text_padding"
         android:paddingEnd="@dimen/activity_text_padding"
         android:text="@string/textview" />
@@ -26,29 +33,37 @@
         android:id="@+id/text_mall"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintWidth_percent="0.3"
-        app:layout_constraintStart_toEndOf="@id/text_title"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_weight="1" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_title"
+        android:layout_weight="1"
+        android:text="@string/label_mall"/>
 
     <TextView
         android:id="@+id/text_lprice"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintWidth_percent="0.2"
-        app:layout_constraintStart_toEndOf="@id/text_mall"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_mall"
         android:paddingStart="@dimen/activity_text_padding"
         android:paddingEnd="@dimen/activity_text_padding"
         android:text="@string/textview" />
 
     <TextView
+        android:id="@+id/text_split"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/text_lprice"
+        app:layout_constraintTop_toBottomOf="@id/text_mall"
+        android:paddingStart="@dimen/activity_text_padding"
+        android:paddingEnd="@dimen/activity_text_padding"
+        android:text="@string/string_split_1" />
+
+    <TextView
         android:id="@+id/text_hprice"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintWidth_percent="0.2"
-        app:layout_constraintStart_toEndOf="@id/text_lprice"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_split"
+        app:layout_constraintTop_toBottomOf="@id/text_mall"
         android:paddingStart="0dp"
         android:paddingEnd="@dimen/activity_text_padding"
         android:text="@string/textview" />

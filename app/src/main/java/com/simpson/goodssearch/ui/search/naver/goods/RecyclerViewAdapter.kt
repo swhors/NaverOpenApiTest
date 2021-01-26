@@ -4,27 +4,43 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.simpson.goodssearch.R
+import com.simpson.goodssearch.domain.model.mygoods.sqlite.MyGoods
 import com.simpson.goodssearch.domain.model.mygoods.sqlite.SQLiteCtl
-import kotlinx.android.synthetic.main.goods_list_view.view.*
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.goods_list_view.view.text_hprice
+import kotlinx.android.synthetic.main.goods_list_view.view.text_lprice
+import kotlinx.android.synthetic.main.goods_list_view.view.text_title
+import kotlinx.android.synthetic.main.goods_list_view_image.view.*
+import android.util.Log
 
-class RecyclerViewAdapter(val _sqLiteCtl: SQLiteCtl): RecyclerView.Adapter<RecyclerViewAdapter.ItemHolder>() {
+class RecyclerViewAdapter(_sqLiteCtl: SQLiteCtl): RecyclerView.Adapter<RecyclerViewAdapter.ItemHolder>() {
 
     val sqLiteCtl = _sqLiteCtl
-    private val itemList = ArrayList<GoodItem>()
+    private val itemList = ArrayList<MyGoods>()
 
-    data class GoodItem(var title:String, var lprice: Int, var hprice: Int, val link: String, val image: String)
+//    data class GoodItem(var title:String, var lprice: Int, var hprice: Int, val link: String, val image: String)
 
     class ItemHolder(parent:ViewGroup, _sqLiteCtl: SQLiteCtl):RecyclerView.ViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.goods_list_view, parent, false)
+        LayoutInflater.from(parent.context).inflate(R.layout.goods_list_view_image, parent, false)
     ) {
         val sqLiteCtl = _sqLiteCtl
-        fun onBind(item: GoodItem){
+        fun onBind(item: MyGoods){
             itemView.run {
-                itemView.text_title.text = item.title
-                itemView.text_lprice.text = item.lprice.toString()
-                itemView.text_hprice.text = item.hprice.toString()
-                itemView.setOnClickListener {
-                    sqLiteCtl.insert("test", 1, "1", "1", "1", 1,100)
+                println(item)
+                if ((item.image != null) && (item.image.length > 10)) {
+                    Picasso.Builder(context).build().load(item.image)
+                        .placeholder(R.drawable.ic_image_black_24dp).into(itemView.image_good)
+                    itemView.text_title.text = item.name
+                    itemView.text_lprice.text = item.lprice.toString()
+                    itemView.text_hprice.text = item.hprice.toString()
+                    itemView.setOnClickListener {
+                        sqLiteCtl.insert(
+                            item.name, item.id,
+                            item.url, item.image,
+                            item.mall, item.lprice,
+                            item.hprice, item.date
+                        )
+                    }
                 }
             }
         }
@@ -44,5 +60,8 @@ class RecyclerViewAdapter(val _sqLiteCtl: SQLiteCtl): RecyclerView.Adapter<Recyc
     }
 
     fun addItem(title: String?, lprice: Int?, hprice: Int?, link: String?, image: String?) = itemList.add(
-        GoodItem(title!!, lprice!!, hprice!!, link!!, image!!))
+                MyGoods.Builder().hprice(hprice!!).lprice(lprice!!).name(title!!).builder()
+        )
+
+    fun addItem(item: MyGoods) = itemList.add(item)
 }

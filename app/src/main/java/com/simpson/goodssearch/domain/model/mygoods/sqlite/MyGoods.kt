@@ -1,5 +1,7 @@
 package com.simpson.goodssearch.domain.model.mygoods.sqlite
 
+import java.util.*
+
 data class MyGoods(
     var name: String, var id: Long,
     var url: String, var image: String,
@@ -21,15 +23,15 @@ data class MyGoods(
         builder.date!!
     )
     class Builder {
-        var name: String ?= null
+        var name: String ?= ""
             private set
         var id: Long ?= -1L
             private set
-        var url: String ?= null
+        var url: String ?= ""
             private set
-        var image: String ?= null
+        var image: String ?= ""
             private set
-        var mall: String ?= null
+        var mall: String ?= ""
             private set
         var lprice: Int ?= -1
             private set
@@ -47,6 +49,12 @@ data class MyGoods(
         fun hprice(hprice: Int) = apply { this.hprice = hprice }
         fun date(data: Long) = apply { this.date = date}
 
-        fun builder() = MyGoods(this)
+        fun builder(): MyGoods {
+            if (date!! <= 0L)
+                this.date == Date().time
+
+            return MyGoods(this)
+        }
+
     }
 }

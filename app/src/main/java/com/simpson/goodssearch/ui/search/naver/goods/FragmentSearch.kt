@@ -1,13 +1,11 @@
 package com.simpson.goodssearch.ui.search.naver.goods
 
 import android.content.Context
-import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethod
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.TextView
@@ -19,6 +17,7 @@ import com.simpson.goodssearch.domain.model.naver.NaverDataModelImpl
 import com.simpson.goodssearch.domain.model.naver.data.common.Sort
 import com.simpson.goodssearch.domain.model.naver.service.NaverSearchService
 import android.util.Log
+import com.simpson.goodssearch.domain.model.mygoods.sqlite.MyGoods
 import com.simpson.goodssearch.domain.model.mygoods.sqlite.SQLiteCtl
 import com.simpson.goodssearch.domain.model.mygoods.sqlite.SQLiteHelper
 
@@ -44,8 +43,6 @@ class FragmentSearch : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val app_name = (activity as MainActivity).app_name
-
         naverViewModel =
             FragmentSearchViewModel(
                 NaverDataModelImpl(NaverSearchService.create())
@@ -73,8 +70,16 @@ class FragmentSearch : Fragment() {
             it.items.forEach {
                     item ->
                     println("title=${item.title}, lprice=${item.lprice}, hprice=${item.hprice}, i=${cnt++}")
-                    (recyclerView.adapter as RecyclerViewAdapter).
-                        addItem(item.title, item.lprice, item.hprice, item.link, item.image)
+                (recyclerView.adapter as RecyclerViewAdapter).addItem(
+                    MyGoods.Builder()
+                        .name(item.title!!)
+                        .image(item.image!!)
+                        .url(item.link!!)
+                        .mall(if(item.malName==null) "" else item.malName!!)
+                        .lprice(item.lprice!!)
+                        .hprice(item.hprice!!)
+                        .id(item.productId.toString().toLong())
+                        .builder())
             }
             (recyclerView.adapter as RecyclerViewAdapter).notifyDataSetChanged()
         })
