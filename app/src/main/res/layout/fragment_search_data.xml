@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.search.naver.goods.FragmentSearch">
+
+    <TableLayout
+        android:id="@+id/layout_user_input"
+        android:paddingStart="20dp"
+        android:paddingEnd="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TableRow>
+            <TextView android:text="@string/label_goods_name"/>
+            <EditText
+                android:id="@+id/text_goods_name"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:autofillHints='""'
+                android:ems="10"
+                android:hint="@string/label_goods_name"
+                android:inputType="textPersonName"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:text="@string/label_item_cnt_max"/>
+            <EditText
+                android:id="@+id/text_item_cnt_max"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:autofillHints='""'
+                android:ems="10"
+                android:hint="@string/label_item_cnt_max"
+                android:inputType="textPersonName"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:text="@string/label_sort"/>
+            <EditText
+                android:id="@+id/text_sort"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:autofillHints='""'
+                android:ems="10"
+                android:hint="@string/label_sort"
+                android:inputType="textPersonName"/>
+        </TableRow>
+    </TableLayout>
+    <Button
+        android:id="@+id/btn_search"
+        android:paddingStart="10dp"
+        android:paddingEnd="20dp"
+        android:layout_toEndOf="@id/layout_user_input"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="@string/search" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/view_results"
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/layout_user_input"
+        android:visibility="visible" />
+
+</RelativeLayout>

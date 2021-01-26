@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.simpson.goodssearch.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_my_data"
+        android:name="com.simpson.goodssearch.ui.mydata.FragmentMyData"
+        android:label="@string/label_my_data"
+        tools:layout="@layout/fragment_my_data" />
+
+    <fragment
+        android:id="@+id/nav_search_data"
+        android:name="com.simpson.goodssearch.ui.search.naver.goods.FragmentSearch"
+        android:label="@string/label_search"
+        tools:layout="@layout/fragment_search_data" />
+    <fragment
+        android:id="@+id/nav_trend"
+        android:name="com.simpson.goodssearch.ui.search.naver.trend.FragmentNavTrendApi"
+        android:label="@string/label_trend"
+        tools:layout="@layout/fragment_trend" />
+    fragment_web_search
+</navigation>

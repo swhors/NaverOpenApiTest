@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">Monitoring Alarm</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_get_image">Image</string>
+    <string name="title_get_web">Web</string>
+    <string name="image_item_view">Image Item View</string>
+    <string name="btn_image_search">Button</string>
+    <string name="text_name">Name</string>
+    <string name="image_name">Image Name</string>
+    <string name="kakao_searcher">Kakao Searcher</string>
+    <string name="textview">TextView</string>
+    <string name="name">Name</string>
+    <string name="search">Search</string>
+    <string name="naver">Naver</string>
+    <string name="naver_shop_api">Naver Shopping API</string>
+    <string name="string_split_1">-</string>
+    <string name="label_for_start">Start Date</string>
+    <string name="label_for_end">End Date</string>
+    <string name="label_title">Title</string>
+    <string name="label_period">Period</string>
+    <string name="label_ratio">Ratio</string>
+    <string name="text_input_trend">Input Trend Keywords..</string>
+    <string name="text_trend_keywords">Trend Keyword</string>
+    <string name="string_trend">trend</string>
+    <string name="label_my_data">My Data</string>
+    <string name="label_search">Search</string>
+    <string name="label_trend">Trend</string>
+    <string name="label_hot_keyword">Hot Keyword</string>
+    <string name="label_goods_name">Goods Name</string>
+    <string name="label_item_cnt_max">Max Item Count</string>
+    <string name="label_sort">Sort</string>
+</resources>
