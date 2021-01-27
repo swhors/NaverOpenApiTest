@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.goods_list_view.view.text_lprice
 import kotlinx.android.synthetic.main.goods_list_view.view.text_title
 import kotlinx.android.synthetic.main.goods_list_view_image.view.*
 import android.util.Log
+import org.apache.commons.validator.routines.UrlValidator
 
 class RecyclerViewAdapter(_sqLiteCtl: SQLiteCtl): RecyclerView.Adapter<RecyclerViewAdapter.ItemHolder>() {
 
@@ -27,19 +28,21 @@ class RecyclerViewAdapter(_sqLiteCtl: SQLiteCtl): RecyclerView.Adapter<RecyclerV
         fun onBind(item: MyGoods){
             itemView.run {
                 println(item)
-                if ((item.image != null) && (item.image.length > 10)) {
-                    Picasso.Builder(context).build().load(item.image)
-                        .placeholder(R.drawable.ic_image_black_24dp).into(itemView.image_good)
-                    itemView.text_title.text = item.name
-                    itemView.text_lprice.text = item.lprice.toString()
-                    itemView.text_hprice.text = item.hprice.toString()
-                    itemView.setOnClickListener {
-                        sqLiteCtl.insert(
-                            item.name, item.id,
-                            item.url, item.image,
-                            item.mall, item.lprice,
-                            item.hprice, item.date
-                        )
+                if (UrlValidator().isValid(item.image)) {
+                    if ((item.image != null) && (item.image.length > 10)) {
+                        Picasso.Builder(context).build().load(item.image)
+                            .placeholder(R.drawable.ic_image_black_24dp).into(itemView.image_good)
+                        itemView.text_title.text = item.name
+                        itemView.text_lprice.text = item.lprice.toString()
+                        itemView.text_hprice.text = item.hprice.toString()
+                        itemView.setOnClickListener {
+                            sqLiteCtl.insert(
+                                item.name, item.id,
+                                item.url, item.image,
+                                item.mall, item.lprice,
+                                item.hprice, item.date
+                            )
+                        }
                     }
                 }
             }

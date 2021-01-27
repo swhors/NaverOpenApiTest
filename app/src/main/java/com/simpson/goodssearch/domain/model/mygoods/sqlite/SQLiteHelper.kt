@@ -12,6 +12,7 @@ class SQLiteHelper(
 ) : SQLiteOpenHelper(context, name, factory, version) {
 
     companion object {
+        const val no = "no"
         const val table_name = "my_goods"
         const val goods_name = "name"
         const val goods_url = "url"
@@ -24,9 +25,11 @@ class SQLiteHelper(
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
-        val createQuery = "create table if not exists $table_name ($goods_name text not null, " +
+        val createQuery = "create table if not exists $table_name ( " +
+                "    $no INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "    $goods_name text not null, " +
                 "    $goods_url text, " +
-                "    $goods_id int primary key," +
+                "    $goods_id int," +
                 "    $image_url text, " +
                 "    $mall_name text, " +
                 "    $low_price int, " +

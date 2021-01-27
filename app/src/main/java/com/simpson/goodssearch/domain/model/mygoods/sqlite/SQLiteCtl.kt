@@ -5,6 +5,7 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import java.util.*
 import android.util.Log
+import java.lang.Exception
 import kotlin.collections.ArrayList
 
 
@@ -50,9 +51,10 @@ class SQLiteCtl() {
                lprice: Int,
                hprice: Int,
                date: Long) {
-        val results = select(goods_id)
+        val results = select(goods_id, goods_name, mall_name)
         if (results.size > 0) {
-            update(goods_id, lprice, hprice  )
+            for (result in results)
+                update(result.no, lprice, hprice)
         } else {
             insertInternal(goods_name, goods_id, goods_url, image_url, mall_name, lprice, hprice, date)
         }
@@ -76,13 +78,33 @@ class SQLiteCtl() {
         return returnValue
     }
 
-    fun select(goods_id: Long): ArrayList<MyGoods>{
+    fun select(goods_id: Long, title: String ?, mall: String ?): ArrayList<MyGoods>{
         val sqlite = _helper.writableDatabase
-        val query: String? = if (goods_id == -1L) {
-            "select * from ${SQLiteHelper.table_name}"
-        } else {
-            "select * from ${SQLiteHelper.table_name} where ${SQLiteHelper.goods_id} = ${goods_id};"
+
+        var query = "select * from ${SQLiteHelper.table_name}"
+
+        val wheres = ArrayList<String>()
+
+        if (goods_id >= 0L) {
+            wheres.add(" ${SQLiteHelper.goods_id}=$goods_id")
         }
+
+        if (title != null && title.isNotEmpty()) {
+            wheres.add(" ${SQLiteHelper.goods_name}=\'$title\'")
+        }
+
+        if (mall != null && mall.isNotEmpty()) {
+            wheres.add(" ${SQLiteHelper.mall_name}=\'$mall\'")
+        }
+
+        query += if (wheres.size > 0 ) {
+            (" WHERE " + wheres.joinToString(" AND ") + ";")
+        } else {
+            ";"
+        }
+
+        Log.i("sqlite query ", query)
+
         val cursor: Cursor = sqlite.rawQuery(query, null)
         val columns = arrayListOf(SQLiteHelper.goods_name, SQLiteHelper.goods_id,
             SQLiteHelper.goods_url, SQLiteHelper.image_url, SQLiteHelper.mall_name,
@@ -113,18 +135,31 @@ class SQLiteCtl() {
         return results
     }
 
-    fun update(goods_id: Long, lprice: Int, hprice: Int  ) {
+    fun update(goods_no: Long, lprice: Int, hprice: Int  ) {
         val sqlite = _helper.writableDatabase
         val query = "update ${SQLiteHelper.table_name} set ${SQLiteHelper.low_price}=$lprice, " +
                 "        ${SQLiteHelper.high_price}=$hprice " +
-                "    where ${SQLiteHelper.goods_id}=${goods_id};"
+                "    where ${SQLiteHelper.no}=${goods_no};"
         println("update query=$query")
         sqlite.execSQL(query)
     }
 
-    fun delete(goods_id: Long) {
+    fun delete(goods_id: Long, title: String?) {
         val sqlite = _helper.writableDatabase
-        sqlite.delete(SQLiteHelper.table_name, "${SQLiteHelper.goods_id}=?", arrayOf(goods_id.toString()))
+        val query: String = if (title != null) {
+            "delete from ${SQLiteHelper.table_name} " +
+                    "where ${SQLiteHelper.goods_id}=$goods_id " +
+                    "    and ${SQLiteHelper.goods_name}=\'$title\';"
+        } else {
+            "delete from ${SQLiteHelper.table_name} " +
+                    "where ${SQLiteHelper.goods_id}=$goods_id;"
+        }
+        try {
+            sqlite.execSQL(query)
+        } catch (exception: Exception) {
+            Log.e("Exception", "query=$query, msg=$exception")
+        }
+//        sqlite.delete(SQLiteHelper.table_name, "${SQLiteHelper.goods_id}=?", arrayOf(goods_id.toString()))
     }
 
     fun dbclose() {

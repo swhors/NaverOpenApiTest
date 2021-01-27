@@ -3,16 +3,18 @@ package com.simpson.goodssearch.domain.model.mygoods.sqlite
 import java.util.*
 
 data class MyGoods(
+    var no: Long,
     var name: String, var id: Long,
     var url: String, var image: String,
     var mall: String, var lprice: Int,
     var hprice: Int, var date: Long) {
 
-    constructor() : this("", -1L, "",
+    constructor() : this(-1L, "", -1L, "",
         "", "", -1,
         -1, -1L)
 
     constructor(builder: Builder) : this(
+        builder.no!!,
         builder.name!!,
         builder.id!!,
         builder.url!!,
@@ -23,6 +25,8 @@ data class MyGoods(
         builder.date!!
     )
     class Builder {
+        var no: Long ?= -1L
+            private set
         var name: String ?= ""
             private set
         var id: Long ?= -1L
@@ -40,6 +44,7 @@ data class MyGoods(
         var date: Long ?= -1L
             private set
 
+        fun no(no: Long) = apply { this.no = no }
         fun name(name: String) = apply { this.name = name }
         fun id(id: Long) = apply { this.id = id }
         fun url(url: String) = apply { this.url = url }

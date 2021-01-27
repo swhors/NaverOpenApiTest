@@ -14,7 +14,6 @@ import com.simpson.goodssearch.MainActivity
 import com.simpson.goodssearch.databinding.FragmentMyDataBinding
 import com.simpson.goodssearch.domain.model.mygoods.sqlite.SQLiteCtl
 import com.simpson.goodssearch.domain.model.mygoods.sqlite.SQLiteHelper
-import com.simpson.goodssearch.ui.search.naver.goods.RecyclerViewAdapter
 import android.util.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.Main
@@ -44,15 +43,14 @@ class FragmentMyData : Fragment() {
     private val binding get() = _binding!!
 
     private fun updateView() {
-        var results = this.sqLiteCtl?.select(-1)
+        var results = this.sqLiteCtl?.select(-1, null, null)
 
         println("$results")
 
         (recyclerView.adapter as RecyclerViewAdapter).clear()
         for(result in results!!) {
             println("$result")
-            (recyclerView.adapter as RecyclerViewAdapter).
-            addItem(result.name, result.lprice, result.hprice, result.url, result.image)
+            (recyclerView.adapter as RecyclerViewAdapter).addItem(result)
         }
         (recyclerView.adapter as RecyclerViewAdapter).notifyDataSetChanged()
         Log.i("FragmentMyData", "onCreateView")

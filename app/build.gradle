@@ -89,6 +89,10 @@ dependencies {
     // ButterKnife
     implementation 'com.jakewharton:butterknife:10.2.3'
 
+    // URL Checker
+    // https://mvnrepository.com/artifact/commons-validator/commons-validator
+    implementation group: 'commons-validator', name: 'commons-validator', version: '1.7'
+
 
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

@@ -78,7 +78,7 @@ class FragmentSearch : Fragment() {
                         .mall(if(item.malName==null) "" else item.malName!!)
                         .lprice(item.lprice!!)
                         .hprice(item.hprice!!)
-                        .id(item.productId.toString().toLong())
+                        .id(if(item.productId != null) item.productId.toString().toLong() else 0L)
                         .builder())
             }
             (recyclerView.adapter as RecyclerViewAdapter).notifyDataSetChanged()
