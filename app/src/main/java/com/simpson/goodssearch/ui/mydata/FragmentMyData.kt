@@ -29,7 +29,6 @@ class FragmentMyData : Fragment() {
     private var sqLiteHelper: SQLiteHelper ?= null
     private lateinit var recyclerView: RecyclerView
     private var imm: InputMethodManager ?= null
-    private var viewUpdatetor: Thread ?= null
     private var isRun: Boolean = false
 
 
@@ -43,7 +42,7 @@ class FragmentMyData : Fragment() {
     private val binding get() = _binding!!
 
     private fun updateView() {
-        var results = this.sqLiteCtl?.select(-1, null, null)
+        val results = this.sqLiteCtl?.select(-1, null, null)
 
         println("$results")
 
@@ -59,7 +58,7 @@ class FragmentMyData : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentMyDataBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
@@ -87,7 +86,6 @@ class FragmentMyData : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(FragmentMyDataViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
     override fun onResume() {

@@ -1,0 +1,9 @@
+<resources>
+    <declare-styleable name="DetailInfoView">
+        <attr name="titleString" format="string" />
+        <attr name="infoDimension" format="dimension" />
+        <attr name="infoColor" format="color" />
+        <attr name="infoDrawable" format="color|reference">
+        </attr>
+    </declare-styleable>
+</resources>

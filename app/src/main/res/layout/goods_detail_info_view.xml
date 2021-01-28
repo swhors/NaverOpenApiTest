@@ -1,0 +1,17 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.simpson.goodssearch.ui.mydata.DetailInfoView
+        style="@style/Widget.Theme.GoodsSearch.DetailedInfoView"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="40dp"
+        app:infoDimension="24sp"
+        app:infoDrawable="@android:drawable/ic_menu_add"
+        app:titleString="Hello, DetailInfoView" />
+
+</FrameLayout>

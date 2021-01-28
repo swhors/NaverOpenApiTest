@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import com.simpson.goodssearch.domain.model.naver.NaverDataModel
 import com.simpson.goodssearch.domain.model.naver.data.common.KeywordGroups
 import com.simpson.goodssearch.domain.model.naver.data.request.SearchTrend
-import com.simpson.goodssearch.domain.model.naver.data.response.GoodsResponse
 import com.simpson.goodssearch.domain.model.naver.data.response.TrendResponse
 import com.simpson.goodssearch.domain.view.BaseKotlinViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.search.naver.trendapi.FragmentNavTrendApi">
+    tools:context=".ui.search.naver.trend.FragmentNavTrendApi">
 
     <TableLayout
         android:id="@+id/layout_user_input"
@@ -12,14 +12,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <TableRow>
-            <TextView android:text="@string/string_trend"/>
+            <TextView android:text="@string/label_trend"/>
             <EditText
                 android:id="@+id/text_trend_keyword"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:autofillHints='""'
                 android:ems="10"
-                android:hint="@string/text_trend_keywords"
+                android:hint="@string/label_trend"
                 android:inputType="textPersonName"/>
         </TableRow>
         <TableRow>
@@ -52,7 +52,7 @@
         android:layout_toEndOf="@id/layout_user_input"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:text="@string/search" />
+        android:text="@string/label_search" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/view_results"

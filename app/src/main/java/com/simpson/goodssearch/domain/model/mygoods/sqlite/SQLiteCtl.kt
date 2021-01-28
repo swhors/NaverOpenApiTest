@@ -144,16 +144,27 @@ class SQLiteCtl() {
         sqlite.execSQL(query)
     }
 
-    fun delete(goods_id: Long, title: String?) {
+    fun delete(goods_id: Long, title: String?, mall: String?) {
         val sqlite = _helper.writableDatabase
-        val query: String = if (title != null) {
-            "delete from ${SQLiteHelper.table_name} " +
-                    "where ${SQLiteHelper.goods_id}=$goods_id " +
-                    "    and ${SQLiteHelper.goods_name}=\'$title\';"
-        } else {
-            "delete from ${SQLiteHelper.table_name} " +
-                    "where ${SQLiteHelper.goods_id}=$goods_id;"
+        var query = "delete from ${SQLiteHelper.table_name} "
+        val wheres = ArrayList<String>()
+
+        if (goods_id > 0L) {
+            wheres.add("${SQLiteHelper.goods_id}=\'$goods_id\'")
         }
+        if (title != null) {
+            wheres.add("${SQLiteHelper.goods_name}=\'$title\'")
+        }
+        if (mall != null) {
+            wheres.add("${SQLiteHelper.mall_name}=\'$mall\'")
+        }
+
+        query =  if (wheres.size > 0) {
+            "$query WHERE ${wheres.joinToString(" AND ")};"
+        } else {
+            "$query;"
+        }
+
         try {
             sqlite.execSQL(query)
         } catch (exception: Exception) {

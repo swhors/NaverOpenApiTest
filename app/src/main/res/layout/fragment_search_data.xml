@@ -68,7 +68,7 @@
         app:layout_constraintBottom_toTopOf="@id/view_results"
         app:layout_constraintStart_toEndOf="@id/layout_user_input"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="@string/search" />
+        android:text="@string/label_search" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/view_results"
