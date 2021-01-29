@@ -3,60 +3,60 @@ package com.simpson.goodssearch.domain.model.mygoods.sqlite
 import java.util.*
 
 data class MyGoods(
-    var no: Long,
-    var name: String, var id: Long,
-    var url: String, var image: String,
-    var mall: String, var lprice: Int,
-    var hprice: Int, var date: Long) {
+    var id: Int,
+    var goods_name: String, var goods_id: Long,
+    var goods_url: String, var image_url: String,
+    var mall_name: String, var lprice: Int,
+    var hprice: Int, var goods_date: Long) {
 
-    constructor() : this(-1L, "", -1L, "",
+    constructor() : this(0, "", -1L, "",
         "", "", -1,
         -1, -1L)
 
     constructor(builder: Builder) : this(
-        builder.no!!,
-        builder.name!!,
         builder.id!!,
-        builder.url!!,
-        builder.image!!,
-        builder.mall!!,
+        builder.goods_name!!,
+        builder.goods_id!!,
+        builder.goods_url!!,
+        builder.image_url!!,
+        builder.mall_name!!,
         builder.lprice!!,
         builder.hprice!!,
-        builder.date!!
+        builder.goods_date!!
     )
     class Builder {
-        var no: Long ?= -1L
+        var id: Int ?= 0
             private set
-        var name: String ?= ""
+        var goods_name: String ?= ""
             private set
-        var id: Long ?= -1L
+        var goods_id: Long ?= -1L
             private set
-        var url: String ?= ""
+        var goods_url: String ?= ""
             private set
-        var image: String ?= ""
+        var image_url: String ?= ""
             private set
-        var mall: String ?= ""
+        var mall_name: String ?= ""
             private set
         var lprice: Int ?= -1
             private set
         var hprice: Int ?= -1
             private set
-        var date: Long ?= -1L
+        var goods_date: Long ?= -1L
             private set
 
-        fun no(no: Long) = apply { this.no = no }
-        fun name(name: String) = apply { this.name = name }
-        fun id(id: Long) = apply { this.id = id }
-        fun url(url: String) = apply { this.url = url }
-        fun image(image: String) = apply { this.image = image }
-        fun mall(mall: String) = apply { this.mall = mall }
+        fun id(id: Int) = apply { this.id = id }
+        fun goods_name(goods_name: String) = apply { this.goods_name = goods_name }
+        fun goods_id(goods_id: Long) = apply { this.goods_id = goods_id }
+        fun goods_url(goods_url: String) = apply { this.goods_url = goods_url }
+        fun image_url(image_url: String) = apply { this.image_url = image_url }
+        fun mall_name(mall_name: String) = apply { this.mall_name = mall_name }
         fun lprice(lprice: Int) = apply { this.lprice = lprice }
         fun hprice(hprice: Int) = apply { this.hprice = hprice }
-        fun date(data: Long) = apply { this.date = date}
+        fun goods_date(goods_date: Long) = apply { this.goods_date = goods_date}
 
         fun builder(): MyGoods {
-            if (date!! <= 0L)
-                this.date == Date().time
+            if (goods_date!! <= 0L)
+                this.goods_date = Date().time
 
             return MyGoods(this)
         }

@@ -19,6 +19,7 @@
     <string name="label_sort">Sort</string>
     <string name="label_lprice">Low</string>
     <string name="label_hprice">High</string>
+    <string name="label_goods">Goods</string>
     <string name="label_detail">Detailed Info</string>
     <string name="label_delete">Delete</string>
 </resources>

@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.simpson.goodssearch.R
-import kotlinx.android.synthetic.main.item_list_view.view.*
+import kotlinx.android.synthetic.main.trend_item_list_view.view.*
 
 class TrendCategoryAdapter: RecyclerView.Adapter<TrendCategoryAdapter.ItemHolder>() {
 
@@ -12,7 +12,7 @@ class TrendCategoryAdapter: RecyclerView.Adapter<TrendCategoryAdapter.ItemHolder
 
     class ItemHolder(parent:ViewGroup): RecyclerView
     .ViewHolder(LayoutInflater.from(parent.context)
-        .inflate(R.layout.item_list_view, parent, false)) {
+        .inflate(R.layout.trend_item_list_view, parent, false)) {
         fun onBind(item: TrendItem){
             itemView.run {
                 text_title.text = item.title

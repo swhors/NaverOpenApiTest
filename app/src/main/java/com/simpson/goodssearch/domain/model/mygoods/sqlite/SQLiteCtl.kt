@@ -20,13 +20,13 @@ class SQLiteCtl() {
     }
 
     private fun insertInternal(goods_name: String,
-                                goods_id: Long,
-                                goods_url: String,
-                                image_url: String,
-                                mall_name: String,
-                                lprice: Int,
-                                hprice: Int,
-                                date: Long) {
+                               goods_id: Long,
+                               goods_url: String,
+                               image_url: String,
+                               mall_name: String,
+                               lprice: Int,
+                               hprice: Int,
+                               date: Long) {
         val sqlite = _helper.writableDatabase
         val values = ContentValues()
         values.put(SQLiteHelper.goods_name, goods_name)
@@ -39,7 +39,7 @@ class SQLiteCtl() {
         var sDate = date
         if (sDate <= 0L)
             sDate = Date().time
-        values.put(SQLiteHelper.date, sDate)
+        values.put(SQLiteHelper.goods_date, sDate)
         sqlite.insert(SQLiteHelper.table_name, null, values)
     }
 
@@ -53,8 +53,10 @@ class SQLiteCtl() {
                date: Long) {
         val results = select(goods_id, goods_name, mall_name)
         if (results.size > 0) {
-            for (result in results)
-                update(result.no, lprice, hprice)
+            for (result in results) {
+                if (result.lprice != lprice || result.hprice != hprice)
+                    update(result.id, lprice, hprice)
+            }
         } else {
             insertInternal(goods_name, goods_id, goods_url, image_url, mall_name, lprice, hprice, date)
         }
@@ -65,7 +67,7 @@ class SQLiteCtl() {
         val c: Cursor = sqlite.query(SQLiteHelper.table_name, null, null, null, null, null, null)
         val columns = arrayListOf(SQLiteHelper.goods_name, SQLiteHelper.goods_id,
             SQLiteHelper.goods_url, SQLiteHelper.image_url, SQLiteHelper.mall_name,
-            SQLiteHelper.low_price, SQLiteHelper.high_price, SQLiteHelper.date)
+            SQLiteHelper.low_price, SQLiteHelper.high_price, SQLiteHelper.goods_date)
         val returnValue = ArrayList<String>(columns.size)
         while(c.moveToNext()) {
             var cnt = 0
@@ -106,9 +108,11 @@ class SQLiteCtl() {
         Log.i("sqlite query ", query)
 
         val cursor: Cursor = sqlite.rawQuery(query, null)
-        val columns = arrayListOf(SQLiteHelper.goods_name, SQLiteHelper.goods_id,
-            SQLiteHelper.goods_url, SQLiteHelper.image_url, SQLiteHelper.mall_name,
-            SQLiteHelper.low_price, SQLiteHelper.high_price, SQLiteHelper.date)
+        val columns = arrayListOf(SQLiteHelper.id,
+            SQLiteHelper.goods_name, SQLiteHelper.goods_id,
+            SQLiteHelper.goods_url, SQLiteHelper.image_url,
+            SQLiteHelper.mall_name, SQLiteHelper.low_price,
+            SQLiteHelper.high_price, SQLiteHelper.goods_date)
 
         val results = ArrayList<MyGoods>()
         while(cursor.moveToNext()) {
@@ -117,14 +121,15 @@ class SQLiteCtl() {
             do {
                 val returnVal = cursor.getString(cursor.getColumnIndex(columns[cnt]))
                 when(columns[cnt]) {
-                    SQLiteHelper.goods_name -> myGoods.name = returnVal
-                    SQLiteHelper.goods_id -> myGoods.id = returnVal.toLong()
-                    SQLiteHelper.goods_url -> myGoods.url = returnVal
-                    SQLiteHelper.image_url -> myGoods.image = returnVal
-                    SQLiteHelper.mall_name -> myGoods.mall = returnVal
+                    SQLiteHelper.id -> myGoods.id = returnVal.toInt()
+                    SQLiteHelper.goods_name -> myGoods.goods_name = returnVal
+                    SQLiteHelper.goods_id -> myGoods.goods_id = returnVal.toLong()
+                    SQLiteHelper.goods_url -> myGoods.goods_url = returnVal
+                    SQLiteHelper.image_url -> myGoods.image_url = returnVal
+                    SQLiteHelper.mall_name -> myGoods.mall_name = returnVal
                     SQLiteHelper.high_price -> myGoods.hprice = returnVal.toInt()
                     SQLiteHelper.low_price -> myGoods.lprice = returnVal.toInt()
-                    SQLiteHelper.date -> myGoods.date = returnVal.toLong()
+                    SQLiteHelper.goods_date -> myGoods.goods_date = returnVal.toLong()
                 }
                 Log.i("$_tag select", "$cnt/${columns[cnt]} - $returnVal")
             } while(++cnt < columns.size)
@@ -135,19 +140,23 @@ class SQLiteCtl() {
         return results
     }
 
-    fun update(goods_no: Long, lprice: Int, hprice: Int  ) {
+    fun update(id: Int, lprice: Int, hprice: Int  ) {
         val sqlite = _helper.writableDatabase
         val query = "update ${SQLiteHelper.table_name} set ${SQLiteHelper.low_price}=$lprice, " +
                 "        ${SQLiteHelper.high_price}=$hprice " +
-                "    where ${SQLiteHelper.no}=${goods_no};"
-        println("update query=$query")
+                "    where ${SQLiteHelper.id}=${id};"
+        Log.i("sqlite query ", query)
         sqlite.execSQL(query)
     }
 
-    fun delete(goods_id: Long, title: String?, mall: String?) {
+    fun delete(id: Int, goods_id: Long, title: String?, mall: String?) {
         val sqlite = _helper.writableDatabase
         var query = "delete from ${SQLiteHelper.table_name} "
         val wheres = ArrayList<String>()
+
+        if (id >= 0) {
+            wheres.add("${SQLiteHelper.id}=\'$id\'")
+        }
 
         if (goods_id > 0L) {
             wheres.add("${SQLiteHelper.goods_id}=\'$goods_id\'")
@@ -165,12 +174,13 @@ class SQLiteCtl() {
             "$query;"
         }
 
+        Log.i("sqlite query ", query)
+
         try {
             sqlite.execSQL(query)
         } catch (exception: Exception) {
             Log.e("Exception", "query=$query, msg=$exception")
         }
-//        sqlite.delete(SQLiteHelper.table_name, "${SQLiteHelper.goods_id}=?", arrayOf(goods_id.toString()))
     }
 
     fun dbclose() {

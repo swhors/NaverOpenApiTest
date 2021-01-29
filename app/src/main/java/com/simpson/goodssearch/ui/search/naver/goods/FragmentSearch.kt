@@ -72,13 +72,13 @@ class FragmentSearch : Fragment() {
                     println("title=${item.title}, lprice=${item.lprice}, hprice=${item.hprice}, i=${cnt++}")
                 (recyclerView.adapter as RecyclerViewAdapter).addItem(
                     MyGoods.Builder()
-                        .name(item.title!!)
-                        .image(item.image!!)
-                        .url(item.link!!)
-                        .mall(if(item.malName==null) "" else item.malName!!)
+                        .goods_name(item.title!!)
+                        .image_url(item.image!!)
+                        .goods_url(item.link!!)
+                        .mall_name(if(item.malName==null) "" else item.malName!!)
                         .lprice(item.lprice!!)
                         .hprice(item.hprice!!)
-                        .id(if(item.productId != null) item.productId.toString().toLong() else 0L)
+                        .goods_id(if(item.productId != null) item.productId.toString().toLong() else 0L)
                         .builder())
             }
             (recyclerView.adapter as RecyclerViewAdapter).notifyDataSetChanged()

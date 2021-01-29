@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_text_padding"
+    android:orientation="vertical">
+    <ImageView
+        android:id="@+id/image_goods"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:padding="@dimen/activity_text_padding"
+        android:contentDescription="@string/label_goods"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/text_label_title"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:paddingStart="@dimen/activity_text_padding"
+        android:paddingEnd="@dimen/activity_text_padding"
+        android:id="@+id/text_label_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_title"
+        app:layout_constraintWidth_percent="0.3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/text_title"
+        app:layout_constraintBottom_toTopOf="@id/text_label_mall"/>
+
+    <TextView
+        android:paddingStart="@dimen/activity_text_padding"
+        android:paddingEnd="@dimen/activity_text_padding"
+        android:id="@+id/text_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.7"
+        app:layout_constraintStart_toEndOf="@id/text_label_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/text_mall"/>
+
+    <TextView
+        android:paddingStart="@dimen/activity_text_padding"
+        android:paddingEnd="@dimen/activity_text_padding"
+        android:id="@+id/text_label_mall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_mall"
+        app:layout_constraintWidth_percent="0.3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/text_mall"
+        app:layout_constraintBottom_toTopOf="@id/text_label_lprice"/>
+
+    <TextView
+        android:paddingStart="@dimen/activity_text_padding"
+        android:paddingEnd="@dimen/activity_text_padding"
+        android:id="@+id/text_mall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.7"
+        app:layout_constraintStart_toEndOf="@id/text_label_mall"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/text_lprice"/>
+
+    <TextView
+        android:paddingStart="@dimen/activity_text_padding"
+        android:paddingEnd="@dimen/activity_text_padding"
+        android:id="@+id/text_label_lprice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_lprice"
+        app:layout_constraintWidth_percent="0.3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/text_lprice"
+        app:layout_constraintBottom_toTopOf="@id/text_label_hprice"/>
+
+    <TextView
+        android:paddingStart="@dimen/activity_text_padding"
+        android:paddingEnd="@dimen/activity_text_padding"
+        android:id="@+id/text_lprice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.7"
+        app:layout_constraintStart_toEndOf="@id/text_label_lprice"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/text_hprice"/>
+
+
+    <TextView
+        android:paddingStart="@dimen/activity_text_padding"
+        android:paddingEnd="@dimen/activity_text_padding"
+        android:id="@+id/text_label_hprice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_hprice"
+        app:layout_constraintWidth_percent="0.3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/text_hprice"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:paddingStart="@dimen/activity_text_padding"
+        android:paddingEnd="@dimen/activity_text_padding"
+        android:id="@+id/text_hprice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.7"
+        app:layout_constraintStart_toEndOf="@id/text_label_hprice"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
