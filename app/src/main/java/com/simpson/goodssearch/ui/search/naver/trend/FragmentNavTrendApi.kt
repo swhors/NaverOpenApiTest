@@ -16,7 +16,7 @@ import com.simpson.goodssearch.domain.model.naver.NaverDataModelImpl
 import com.simpson.goodssearch.domain.model.naver.service.NaverSearchService
 
 class FragmentNavTrendApi : Fragment() {
-    private lateinit var naverViewModel: FragmentNavTrendApiViewModel
+    private lateinit var trendViewModel: FragmentNavTrendApiViewModel
 
     private var _binding: FragmentTrendBinding? = null
 
@@ -27,7 +27,7 @@ class FragmentNavTrendApi : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        naverViewModel =
+        trendViewModel =
             FragmentNavTrendApiViewModel(
                 NaverDataModelImpl(NaverSearchService.create())
             )
@@ -45,7 +45,7 @@ class FragmentNavTrendApi : Fragment() {
 
         val imm: InputMethodManager = requireActivity().getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
 
-        naverViewModel.naverGoodsResponseLiveData.observe(viewLifecycleOwner, {
+        trendViewModel.naverGoodsResponseLiveData.observe(viewLifecycleOwner, {
             val lists = ArrayList<TrendCategoryAdapter.TrendItem>()
             var i = 0
             println("result = cnt =${cnt++}, ${it.results}")
@@ -71,7 +71,7 @@ class FragmentNavTrendApi : Fragment() {
 
         btn.setOnClickListener{
             println(viewWebName.text)
-            naverViewModel.getWebSearch(viewWebName.text.toString(), 10,10)
+            trendViewModel.getWebSearch(viewWebName.text.toString(), 10,10)
             imm.hideSoftInputFromWindow(viewWebName.windowToken, 0)
         }
         return root

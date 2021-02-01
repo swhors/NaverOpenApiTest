@@ -22,7 +22,7 @@ import com.simpson.goodssearch.domain.model.mygoods.sqlite.SQLiteCtl
 import com.simpson.goodssearch.domain.model.mygoods.sqlite.SQLiteHelper
 
 class FragmentSearch : Fragment() {
-    private lateinit var naverViewModel: FragmentSearchViewModel
+    private lateinit var searchViewModel: FragmentSearchViewModel
 
     private var _binding: FragmentSearchDataBinding? = null
     private val binding get() = _binding!!
@@ -43,7 +43,7 @@ class FragmentSearch : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        naverViewModel =
+        searchViewModel =
             FragmentSearchViewModel(
                 NaverDataModelImpl(NaverSearchService.create())
             )
@@ -63,7 +63,7 @@ class FragmentSearch : Fragment() {
 
         var cnt = 0
 
-        naverViewModel.naverGoodsResponseLiveData.observe(viewLifecycleOwner, {
+        searchViewModel.naverGoodsResponseLiveData.observe(viewLifecycleOwner, {
             println("result = ${it}, cnt =$cnt")
             (recyclerView.adapter as RecyclerViewAdapter).clear()
             (recyclerView.adapter as RecyclerViewAdapter).notifyItemRemoved(0)
@@ -89,7 +89,7 @@ class FragmentSearch : Fragment() {
             println("Count = $itemCnt")
             println("Count = ${itemCnt.text}")
 
-            naverViewModel.search(goodsName.text.toString(), 10, 10, Sort.ASC)
+            searchViewModel.search(goodsName.text.toString(), 10, 10, Sort.ASC)
             imm.hideSoftInputFromWindow(goodsName.windowToken, 0)
         }
         return root
