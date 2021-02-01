@@ -17,44 +17,37 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/text_label_title"
+        app:layout_constraintBottom_toTopOf="@id/layout_desc"
         tools:srcCompat="@tools:sample/avatars" />
-
+    <TableLayout
+        android:id="@+id/layout_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/image_goods"
+        app:layout_constraintBottom_toBottomOf="parent">
+    <TableRow tools:ignore="MissingConstraints">
     <TextView
         android:paddingStart="@dimen/activity_text_padding"
         android:paddingEnd="@dimen/activity_text_padding"
         android:id="@+id/text_label_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/label_title"
-        app:layout_constraintWidth_percent="0.3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/text_title"
-        app:layout_constraintBottom_toTopOf="@id/text_label_mall"/>
-
+        android:text="@string/label_title" />
     <TextView
         android:paddingStart="@dimen/activity_text_padding"
         android:paddingEnd="@dimen/activity_text_padding"
         android:id="@+id/text_title"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintWidth_percent="0.7"
-        app:layout_constraintStart_toEndOf="@id/text_label_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/text_mall"/>
-
+        android:layout_height="wrap_content"/>
+    </TableRow>
+    <TableRow tools:ignore="MissingConstraints">
     <TextView
         android:paddingStart="@dimen/activity_text_padding"
         android:paddingEnd="@dimen/activity_text_padding"
         android:id="@+id/text_label_mall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/label_mall"
-        app:layout_constraintWidth_percent="0.3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/text_mall"
-        app:layout_constraintBottom_toTopOf="@id/text_label_lprice"/>
-
+        android:text="@string/label_mall"/>
     <TextView
         android:paddingStart="@dimen/activity_text_padding"
         android:paddingEnd="@dimen/activity_text_padding"
@@ -65,7 +58,8 @@
         app:layout_constraintStart_toEndOf="@id/text_label_mall"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/text_lprice"/>
-
+    </TableRow>
+    <TableRow tools:ignore="MissingConstraints">
     <TextView
         android:paddingStart="@dimen/activity_text_padding"
         android:paddingEnd="@dimen/activity_text_padding"
@@ -77,7 +71,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/text_lprice"
         app:layout_constraintBottom_toTopOf="@id/text_label_hprice"/>
-
     <TextView
         android:paddingStart="@dimen/activity_text_padding"
         android:paddingEnd="@dimen/activity_text_padding"
@@ -88,8 +81,8 @@
         app:layout_constraintStart_toEndOf="@id/text_label_lprice"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/text_hprice"/>
-
-
+    </TableRow>
+    <TableRow tools:ignore="MissingConstraints">
     <TextView
         android:paddingStart="@dimen/activity_text_padding"
         android:paddingEnd="@dimen/activity_text_padding"
@@ -112,4 +105,6 @@
         app:layout_constraintStart_toEndOf="@id/text_label_hprice"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
+    </TableRow>
+    </TableLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

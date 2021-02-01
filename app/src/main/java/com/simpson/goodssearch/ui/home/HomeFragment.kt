@@ -10,10 +10,12 @@ import com.simpson.goodssearch.MainActivity
 import com.simpson.goodssearch.databinding.FragmentHomeBinding
 import com.simpson.goodssearch.domain.model.mygoods.sqlite.SQLiteCtl
 import kotlinx.android.synthetic.main.fragment_home.view.*
+import com.simpson.goodssearch.ui.home.TrendViewModel as TrendViewModel1
 
 class HomeFragment : Fragment() {
 
-    private lateinit var trendViewModel: trendViewModel
+    private lateinit var trendViewModel: TrendViewModel1
+    private lateinit var hotViewModel: HotViewModel
     private var _binding: FragmentHomeBinding? = null
     private var _spltteCtl : SQLiteCtl ?= null
 
@@ -31,8 +33,10 @@ class HomeFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View {
+        hotViewModel =
+            ViewModelProvider(this).get(HotViewModel::class.java)
         trendViewModel =
-                ViewModelProvider(this).get(trendViewModel::class.java)
+                ViewModelProvider(this).get(TrendViewModel1::class.java)
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
         val trendRecyclerView = root.trend_list_view

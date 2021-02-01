@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.simpson.goodssearch.R
@@ -72,9 +73,13 @@ class RecyclerViewAdapter(_sqLiteCtl: SQLiteCtl): RecyclerView.Adapter<RecyclerV
                             .into(contentView.image_goods)
 
                         contentView.text_title.text = itemView.text_title.text
+                        contentView.text_mall.text = itemView.text_mall.text
+                        contentView.text_hprice.text = itemView.text_hprice.text
+                        contentView.text_lprice.text = itemView.text_lprice.text
                         val alertDlg = AlertDialog.Builder(itemView.context)
                         alertDlg.setView(contentView)
                         alertDlg.setCancelable(true)
+                        alertDlg.setPositiveButton("OK", null)
                         alertDlg.create().show()
                     }
                 }
