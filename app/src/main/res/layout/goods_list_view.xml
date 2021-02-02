@@ -18,84 +18,76 @@
         android:paddingTop="@dimen/activity_text_padding"
         android:paddingEnd="@dimen/activity_text_padding"
         android:paddingBottom="@dimen/activity_text_padding"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/text_title"
+        app:layout_constraintWidth_percent="0.3"
+        app:layout_constrainedWidth="true"
         app:layout_constrainedHeight="true"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_weight="04"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.3" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/text_title"/>
 
     <TextView
         android:id="@+id/text_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintWidth_percent="0.7"
-        app:layout_constraintStart_toEndOf="@id/image_goods"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/text_mall"
-        android:paddingStart="@dimen/activity_text_padding"
-        android:paddingEnd="@dimen/activity_text_padding"
-        android:text="@string/textview" />
-
-    <TextView
-        android:id="@+id/text_mall"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintWidth_percent="0.3"
+        app:layout_constraintBottom_toTopOf="@id/layout_info"
         app:layout_constraintStart_toEndOf="@id/image_goods"
-        app:layout_constraintTop_toBottomOf="@id/text_title"
-        android:layout_weight="1" />
-
-    <TextView
-        android:id="@+id/text_lprice"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintWidth_percent="0.2"
-        app:layout_constraintStart_toEndOf="@id/text_mall"
-        app:layout_constraintTop_toBottomOf="@id/text_title"
+        app:layout_constraintEnd_toEndOf="parent"
         android:paddingStart="@dimen/activity_text_padding"
         android:paddingEnd="@dimen/activity_text_padding"
         android:text="@string/textview" />
-
-    <TextView
-        android:id="@+id/text_hprice"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:id="@+id/layout_info"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintWidth_percent="0.2"
-        app:layout_constraintStart_toEndOf="@id/text_lprice"
-        app:layout_constraintTop_toBottomOf="@id/text_title"
-        android:paddingStart="0dp"
-        android:paddingEnd="@dimen/activity_text_padding"
-        android:text="@string/textview" />
-
-    <TextView
-        android:id="@+id/text_good_id"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:paddingStart="0dp"
-        android:paddingEnd="0dp"
-        app:layout_constraintStart_toEndOf="@id/text_hprice"
-        app:layout_constraintTop_toBottomOf="@id/text_title"
-        app:layout_constraintWidth_percent="0" />
-
-    <TextView
-        android:id="@+id/text_id"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:paddingStart="0dp"
-        android:paddingEnd="0dp"
-        app:layout_constraintStart_toEndOf="@id/text_good_id"
-        app:layout_constraintTop_toBottomOf="@id/text_title"
-        app:layout_constraintWidth_percent="0" />
-
-    <TextView
-        android:id="@+id/text_image_url"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:paddingStart="0dp"
-        android:paddingEnd="0dp"
-        app:layout_constraintStart_toEndOf="@id/text_id"
-        app:layout_constraintTop_toBottomOf="@id/text_title"
-        app:layout_constraintWidth_percent="0" />
-
+        app:layout_constraintWidth_percent="0.7"
+        app:layout_constraintTop_toTopOf="@id/text_title"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/image_goods"
+        app:layout_constraintEnd_toEndOf="parent" >
+        <TextView
+            android:id="@+id/text_lprice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/activity_text_padding"
+            android:paddingEnd="@dimen/activity_text_padding"
+            android:text="@string/textview" />
+        <TextView
+            android:id="@+id/text_seperate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/activity_text_padding"
+            android:paddingEnd="@dimen/activity_text_padding"
+            android:text="@string/label_split" />
+        <TextView
+            android:id="@+id/text_hprice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/activity_text_padding"
+            android:paddingEnd="@dimen/activity_text_padding"
+            android:text="@string/textview" />
+        <TextView
+            android:id="@+id/text_good_id"
+            android:layout_width="0dp"
+            android:layout_weight="0"
+            android:layout_height="0dp" />
+        <TextView
+            android:id="@+id/text_id"
+            android:layout_width="0dp"
+            android:layout_weight="0"
+            android:layout_height="0dp" />
+        <TextView
+            android:id="@+id/text_image_url"
+            android:layout_width="0dp"
+            android:layout_weight="0"
+            android:layout_height="0dp" />
+        <TextView
+            android:id="@+id/text_mall"
+            android:layout_width="0dp"
+            android:layout_weight="0"
+            android:layout_height="0dp" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
