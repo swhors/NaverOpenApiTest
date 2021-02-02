@@ -11,22 +11,21 @@
         android:id="@+id/layout_user_input"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:forceDarkAllowed="true"
-        android:paddingStart="20dp"
+        android:paddingStart="10dp"
         android:paddingTop="0dp"
         android:paddingEnd="10dp"
-        android:background="@drawable/shape_sub_category"
         app:layout_constraintHeight_percent="0.23"
-        app:layout_constraintBottom_toTopOf="@id/view_results"
-        app:layout_constraintEnd_toStartOf="@id/btn_search"
+        app:layout_constraintBottom_toTopOf="@id/btn_search"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TableRow>
             <TextView android:text="@string/label_goods_name" />
+
             <EditText
                 android:id="@+id/text_goods_name"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:autofillHints='""'
                 android:ems="10"
@@ -36,21 +35,21 @@
 
         <TableRow>
             <TextView android:text="@string/label_item_cnt_max" />
-            <EditText
+
+            <ListView
                 android:id="@+id/text_item_cnt_max"
-                android:layout_width="200dp"
+                android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:autofillHints='""'
-                android:ems="10"
-                android:hint="@string/label_item_cnt_max"
-                android:inputType="textPersonName" />
+                android:scrollbarAlwaysDrawVerticalTrack="true"
+                android:scrollbarStyle="insideInset"
+                android:smoothScrollbar="true" />
         </TableRow>
 
         <TableRow>
             <TextView android:text="@string/label_sort" />
             <EditText
                 android:id="@+id/text_sort"
-                android:layout_width="200dp"
+                android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:autofillHints='""'
                 android:ems="10"
@@ -58,16 +57,15 @@
                 android:inputType="textPersonName" />
         </TableRow>
     </TableLayout>
+
     <Button
         android:id="@+id/btn_search"
-        android:paddingStart="10dp"
+        android:paddingStart="40dp"
         android:paddingEnd="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/view_results"
-        app:layout_constraintStart_toEndOf="@id/layout_user_input"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_user_input"
+        app:layout_constraintStart_toStartOf="@id/layout_user_input"
         android:text="@string/label_search" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -80,6 +78,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout_user_input" />
+        app:layout_constraintTop_toBottomOf="@id/btn_search" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

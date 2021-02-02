@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/item_text_layout"
     android:background="@drawable/shape_sub_category"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="4dp"
     android:layout_marginBottom="4dp"
@@ -16,6 +16,10 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:contentDescription="@string/label_my_data"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
@@ -32,20 +36,11 @@
         android:text="@string/textview" />
 
     <TextView
-        android:id="@+id/text_mall"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_title"
-        android:layout_weight="1"
-        android:text="@string/label_mall"/>
-
-    <TextView
         android:id="@+id/text_lprice"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_mall"
+        app:layout_constraintTop_toBottomOf="@id/text_title"
         android:paddingStart="@dimen/activity_text_padding"
         android:paddingEnd="@dimen/activity_text_padding"
         android:text="@string/textview" />
@@ -55,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/text_lprice"
-        app:layout_constraintTop_toBottomOf="@id/text_mall"
+        app:layout_constraintTop_toBottomOf="@id/text_title"
         android:paddingStart="@dimen/activity_text_padding"
         android:paddingEnd="@dimen/activity_text_padding"
         android:text="@string/label_split" />
@@ -65,9 +60,18 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/text_split"
-        app:layout_constraintTop_toBottomOf="@id/text_mall"
+        app:layout_constraintTop_toBottomOf="@id/text_title"
         android:paddingStart="0dp"
         android:paddingEnd="@dimen/activity_text_padding"
         android:text="@string/textview" />
+
+    <TextView
+        android:id="@+id/text_mall"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_title"
+        android:layout_weight="0"
+        android:text=""/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

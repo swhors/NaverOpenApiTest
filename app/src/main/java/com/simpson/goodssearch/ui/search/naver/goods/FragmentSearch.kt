@@ -17,9 +17,12 @@ import com.simpson.goodssearch.domain.model.naver.NaverDataModelImpl
 import com.simpson.goodssearch.domain.model.naver.data.common.Sort
 import com.simpson.goodssearch.domain.model.naver.service.NaverSearchService
 import android.util.Log
+import android.widget.ArrayAdapter
+import android.widget.ListView
 import com.simpson.goodssearch.domain.model.mygoods.sqlite.MyGoods
 import com.simpson.goodssearch.domain.model.mygoods.sqlite.SQLiteCtl
 import com.simpson.goodssearch.domain.model.mygoods.sqlite.SQLiteHelper
+import com.simpson.goodssearch.R
 
 class FragmentSearch : Fragment() {
     private lateinit var searchViewModel: FragmentSearchViewModel
@@ -28,6 +31,8 @@ class FragmentSearch : Fragment() {
     private val binding get() = _binding!!
 
     private var imm: InputMethodManager? = null
+
+    private var selectedMaxCnt: Int = 10
 
     var sqLiteCtl: SQLiteCtl?= null
     lateinit var sqLiteHelper: SQLiteHelper
@@ -54,8 +59,17 @@ class FragmentSearch : Fragment() {
         val btn: Button = binding.btnSearch
         val goodsName: TextView = binding.textGoodsName
         val sortType: TextView = binding.textSort
-        val itemCnt: TextView = binding.textItemCntMax
+        val itemCnt: ListView = binding.textItemCntMax
         val recyclerView: RecyclerView = binding.viewResults
+
+        val maxCntList: ArrayList<Int> = arrayListOf<Int>(10, 20, 30)
+
+        itemCnt.adapter =
+            context?.let { ArrayAdapter<Int>(it, android.R.layout.simple_list_item_single_choice, maxCntList) }
+        itemCnt.setOnItemClickListener { parent, _, position, _ ->
+            selectedMaxCnt = parent.getItemAtPosition(position) as Int
+        }
+
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = sqLiteCtl?.let { RecyclerViewAdapter(it) }
 
@@ -87,9 +101,9 @@ class FragmentSearch : Fragment() {
         btn.setOnClickListener{
             println("Goods = ${goodsName.text}")
             println("Count = $itemCnt")
-            println("Count = ${itemCnt.text}")
+//            println("Count = ${itemCnt.text}")
 
-            searchViewModel.search(goodsName.text.toString(), 10, 10, Sort.ASC)
+            searchViewModel.search(goodsName.text.toString(), selectedMaxCnt, 10, Sort.ASC)
             imm.hideSoftInputFromWindow(goodsName.windowToken, 0)
         }
         return root
