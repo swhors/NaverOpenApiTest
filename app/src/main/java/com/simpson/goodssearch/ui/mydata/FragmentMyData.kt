@@ -46,12 +46,12 @@ class FragmentMyData : Fragment() {
 
         println("$results")
 
-        (recyclerView.adapter as RecyclerViewAdapter).clear()
+        (recyclerView.adapter as GoodsRecyclerViewAdapter).clear()
         for(result in results!!) {
             println("$result")
-            (recyclerView.adapter as RecyclerViewAdapter).addItem(result)
+            (recyclerView.adapter as GoodsRecyclerViewAdapter).addItem(result)
         }
-        (recyclerView.adapter as RecyclerViewAdapter).notifyDataSetChanged()
+        (recyclerView.adapter as GoodsRecyclerViewAdapter).notifyDataSetChanged()
         Log.i("FragmentMyData", "onCreateView")
     }
 
@@ -65,7 +65,7 @@ class FragmentMyData : Fragment() {
         recyclerView = binding.myDatas
         if (recyclerView.layoutManager == null) {
             recyclerView.layoutManager = LinearLayoutManager(activity)
-            recyclerView.adapter = sqLiteCtl?.let { RecyclerViewAdapter(it) }
+            recyclerView.adapter = sqLiteCtl?.let { GoodsRecyclerViewAdapter(it) }
         }
 
         if (imm == null)

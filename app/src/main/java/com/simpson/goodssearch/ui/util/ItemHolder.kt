@@ -7,7 +7,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.simpson.goodssearch.domain.model.mygoods.sqlite.MyGoods
 
-abstract class GoodsItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+abstract class ItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private var firstClick: Long = 0L
     private var secondClick: Long = 0L
     private var count: Int = 0

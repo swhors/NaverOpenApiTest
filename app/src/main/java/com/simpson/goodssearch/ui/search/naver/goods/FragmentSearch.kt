@@ -16,13 +16,11 @@ import com.simpson.goodssearch.databinding.FragmentSearchDataBinding
 import com.simpson.goodssearch.domain.model.naver.NaverDataModelImpl
 import com.simpson.goodssearch.domain.model.naver.data.common.Sort
 import com.simpson.goodssearch.domain.model.naver.service.NaverSearchService
-import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import com.simpson.goodssearch.domain.model.mygoods.sqlite.MyGoods
 import com.simpson.goodssearch.domain.model.mygoods.sqlite.SQLiteCtl
 import com.simpson.goodssearch.domain.model.mygoods.sqlite.SQLiteHelper
-import com.simpson.goodssearch.R
 
 class FragmentSearch : Fragment() {
     private lateinit var searchViewModel: FragmentSearchViewModel
@@ -71,7 +69,7 @@ class FragmentSearch : Fragment() {
         }
 
         recyclerView.layoutManager = LinearLayoutManager(activity)
-        recyclerView.adapter = sqLiteCtl?.let { RecyclerViewAdapter(it) }
+        recyclerView.adapter = sqLiteCtl?.let { GoodsRecyclerViewAdapter(it) }
 
         val imm: InputMethodManager = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
@@ -79,12 +77,12 @@ class FragmentSearch : Fragment() {
 
         searchViewModel.naverGoodsResponseLiveData.observe(viewLifecycleOwner, {
             println("result = ${it}, cnt =$cnt")
-            (recyclerView.adapter as RecyclerViewAdapter).clear()
-            (recyclerView.adapter as RecyclerViewAdapter).notifyItemRemoved(0)
+            (recyclerView.adapter as GoodsRecyclerViewAdapter).clear()
+            (recyclerView.adapter as GoodsRecyclerViewAdapter).notifyItemRemoved(0)
             it.items.forEach {
                     item ->
                     println("title=${item.title}, lprice=${item.lprice}, hprice=${item.hprice}, i=${cnt++}")
-                (recyclerView.adapter as RecyclerViewAdapter).addItem(
+                (recyclerView.adapter as GoodsRecyclerViewAdapter).addItem(
                     MyGoods.Builder()
                         .goods_name(item.title!!)
                         .image_url(item.image!!)
@@ -95,7 +93,7 @@ class FragmentSearch : Fragment() {
                         .goods_id(if(item.productId != null) item.productId.toString().toLong() else 0L)
                         .builder())
             }
-            (recyclerView.adapter as RecyclerViewAdapter).notifyDataSetChanged()
+            (recyclerView.adapter as GoodsRecyclerViewAdapter).notifyDataSetChanged()
         })
 
         btn.setOnClickListener{

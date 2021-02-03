@@ -10,8 +10,9 @@ import android.widget.PopupMenu
 import com.simpson.goodssearch.R
 import com.simpson.goodssearch.domain.model.mygoods.sqlite.MyGoods
 import com.simpson.goodssearch.domain.model.mygoods.sqlite.SQLiteCtl
-import com.simpson.goodssearch.ui.util.GoodsItemHolder
-import com.simpson.goodssearch.ui.util.GoodsRecyclerViewAdapter
+import com.simpson.goodssearch.ui.util.DetailAlertDlg
+import com.simpson.goodssearch.ui.util.ItemHolder
+import com.simpson.goodssearch.ui.util.RecyclerViewAdapter
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.goods_list_view.view.text_id
 import kotlinx.android.synthetic.main.goods_list_view.view.text_good_id
@@ -23,25 +24,24 @@ import kotlinx.android.synthetic.main.goods_list_view.view.text_mall
 import kotlinx.android.synthetic.main.goods_list_view.view.text_title
 import org.apache.commons.validator.routines.UrlValidator
 
-class RecyclerViewAdapter(_sqLiteCtl: SQLiteCtl): GoodsRecyclerViewAdapter() {
+class GoodsRecyclerViewAdapter(_sqLiteCtl: SQLiteCtl): RecyclerViewAdapter() {
 
     private val sqLiteCtl = _sqLiteCtl
-    private val itemList = ArrayList<MyGoods>()
 
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
-        return ItemHolder(parent, sqLiteCtl, this)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GoodsItemHolder {
+        return GoodsItemHolder(parent, sqLiteCtl, this)
     }
 
-    class ItemHolder(parent: ViewGroup,
+    class GoodsItemHolder(parent: ViewGroup,
                      _sqLiteCtl: SQLiteCtl,
-                     _adapter: RecyclerViewAdapter):com.simpson.goodssearch.ui.util.GoodsItemHolder(
+                     _adapterGoodsGoods: GoodsRecyclerViewAdapter
+    ): ItemHolder(
         LayoutInflater
             .from(parent.context)
             .inflate(R.layout.goods_list_view, parent, false)
     ) {
         private var sqlLiteCtl: SQLiteCtl = _sqLiteCtl
-        private var adapter = _adapter
+        private var adapter = _adapterGoodsGoods
 
         private fun deleteItem(title: String,
                                mall: String,
@@ -72,50 +72,14 @@ class RecyclerViewAdapter(_sqLiteCtl: SQLiteCtl): GoodsRecyclerViewAdapter() {
             alertDlg.show()
         }
 
-        private fun showAlertDialog(contentView: View, context: Context) {
-            val alertDlg = AlertDialog.Builder(context)
-            alertDlg.setView(contentView)
-            alertDlg.setCancelable(true)
-            alertDlg.setPositiveButton("OK", null)
-            alertDlg.create().show()
-        }
-
-        private fun createAlertDlgContentView(title: String,
-                                              mall: String,
-                                              lprice: String,
-                                              hprice: String,
-                                              imageUrl: String):View {
-            val inflater =
-                itemView
-                    .context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-
-            val contentView = inflater.inflate(
-                R.layout.toast_view_layout,
-                null
-            )
-
-            Picasso.Builder(itemView.context).build()
-                .load(imageUrl)
-                .into(contentView.image_goods)
-
-            contentView.text_title.text = title
-            contentView.text_mall.text = mall
-            contentView.text_hprice.text = hprice
-            contentView.text_lprice.text = lprice
-
-            return contentView
-        }
-
         private fun onDetailedItemClicked(itemView: View) {
-            val contentView = createAlertDlgContentView(
+
+            DetailAlertDlg.doModal(itemView.context,
                 itemView.text_title.text.toString(),
                 itemView.text_mall.text.toString(),
                 itemView.text_lprice.text.toString(),
                 itemView.text_hprice.text.toString(),
-                itemView.text_image_url.text.toString())
-
-            showAlertDialog(contentView, itemView.context)
+                itemView.text_image_url.text.toString()).show()
         }
 
         private fun popupMenu(itemView: View) {

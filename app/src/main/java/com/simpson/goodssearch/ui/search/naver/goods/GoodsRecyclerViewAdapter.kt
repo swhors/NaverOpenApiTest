@@ -3,23 +3,22 @@ package com.simpson.goodssearch.ui.search.naver.goods
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
 import com.simpson.goodssearch.R
 import com.simpson.goodssearch.domain.model.mygoods.sqlite.MyGoods
 import com.simpson.goodssearch.domain.model.mygoods.sqlite.SQLiteCtl
 import com.squareup.picasso.Picasso
 import android.view.View
 import androidx.appcompat.app.AlertDialog
-import com.simpson.goodssearch.ui.util.GoodsRecyclerViewAdapter
+import com.simpson.goodssearch.ui.util.RecyclerViewAdapter
 import kotlinx.android.synthetic.main.search_list_view.view.*
 import org.apache.commons.validator.routines.UrlValidator
 
-class RecyclerViewAdapter(_sqLiteCtl: SQLiteCtl): GoodsRecyclerViewAdapter() {
+class GoodsRecyclerViewAdapter(_sqLiteCtl: SQLiteCtl): RecyclerViewAdapter() {
     val sqLiteCtl = _sqLiteCtl
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder = ItemHolder(parent, sqLiteCtl)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GoodsItemHolder = GoodsItemHolder(parent, sqLiteCtl)
 
-    class ItemHolder(parent:ViewGroup, _sqLiteCtl: SQLiteCtl): com.simpson.goodssearch.ui.util.GoodsItemHolder(
+    class GoodsItemHolder(parent:ViewGroup, _sqLiteCtl: SQLiteCtl): com.simpson.goodssearch.ui.util.ItemHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.search_list_view, parent, false)
     ) {
         val sqLiteCtl = _sqLiteCtl
