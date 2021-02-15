@@ -18,7 +18,7 @@ import com.simpson.goodssearch.domain.model.naver.data.common.Sort
 import com.simpson.goodssearch.domain.model.naver.service.NaverSearchService
 import android.widget.ArrayAdapter
 import android.widget.ListView
-import com.simpson.goodssearch.domain.model.mygoods.sqlite.MyGoods
+import com.simpson.goodssearch.domain.model.mygoods.data.MyGoods
 import com.simpson.goodssearch.domain.model.mygoods.sqlite.SQLiteCtl
 import com.simpson.goodssearch.domain.model.mygoods.sqlite.SQLiteHelper
 

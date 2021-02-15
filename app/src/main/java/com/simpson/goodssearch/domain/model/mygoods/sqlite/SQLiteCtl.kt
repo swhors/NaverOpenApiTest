@@ -5,6 +5,7 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import java.util.*
 import android.util.Log
+import com.simpson.goodssearch.domain.model.mygoods.data.MyGoods
 import java.lang.Exception
 import kotlin.collections.ArrayList
 

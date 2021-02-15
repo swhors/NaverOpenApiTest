@@ -1,11 +1,11 @@
-package com.simpson.goodssearch.ui.util
+package com.simpson.goodssearch.ui.lib
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.view.MotionEvent
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.simpson.goodssearch.domain.model.mygoods.sqlite.MyGoods
+import com.simpson.goodssearch.domain.model.mygoods.data.MyGoods
 
 abstract class ItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private var firstClick: Long = 0L

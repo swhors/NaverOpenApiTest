@@ -1,7 +1,7 @@
-package com.simpson.goodssearch.ui.util
+package com.simpson.goodssearch.ui.lib
 
 import androidx.recyclerview.widget.RecyclerView
-import com.simpson.goodssearch.domain.model.mygoods.sqlite.MyGoods
+import com.simpson.goodssearch.domain.model.mygoods.data.MyGoods
 
 abstract class RecyclerViewAdapter(): RecyclerView.Adapter<ItemHolder>() {
     private val itemList = ArrayList<MyGoods>()

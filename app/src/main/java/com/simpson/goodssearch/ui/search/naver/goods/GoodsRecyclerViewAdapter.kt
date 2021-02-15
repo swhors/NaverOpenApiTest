@@ -4,12 +4,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.simpson.goodssearch.R
-import com.simpson.goodssearch.domain.model.mygoods.sqlite.MyGoods
+import com.simpson.goodssearch.domain.model.mygoods.data.MyGoods
 import com.simpson.goodssearch.domain.model.mygoods.sqlite.SQLiteCtl
 import com.squareup.picasso.Picasso
 import android.view.View
 import androidx.appcompat.app.AlertDialog
-import com.simpson.goodssearch.ui.util.RecyclerViewAdapter
+import com.simpson.goodssearch.ui.lib.RecyclerViewAdapter
 import kotlinx.android.synthetic.main.search_list_view.view.*
 import org.apache.commons.validator.routines.UrlValidator
 
@@ -18,7 +18,7 @@ class GoodsRecyclerViewAdapter(_sqLiteCtl: SQLiteCtl): RecyclerViewAdapter() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GoodsItemHolder = GoodsItemHolder(parent, sqLiteCtl)
 
-    class GoodsItemHolder(parent:ViewGroup, _sqLiteCtl: SQLiteCtl): com.simpson.goodssearch.ui.util.ItemHolder(
+    class GoodsItemHolder(parent:ViewGroup, _sqLiteCtl: SQLiteCtl): com.simpson.goodssearch.ui.lib.ItemHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.search_list_view, parent, false)
     ) {
         val sqLiteCtl = _sqLiteCtl

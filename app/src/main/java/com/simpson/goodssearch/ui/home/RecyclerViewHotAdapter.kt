@@ -1,19 +1,14 @@
 package com.simpson.goodssearch.ui.home
 
 import android.annotation.SuppressLint
-import android.app.AlertDialog
-import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
-import android.view.View
 import android.view.ViewGroup
-import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.simpson.goodssearch.R
-import com.simpson.goodssearch.domain.model.mygoods.sqlite.MyGoods
+import com.simpson.goodssearch.domain.model.mygoods.data.MyGoods
 import com.simpson.goodssearch.domain.model.mygoods.sqlite.SQLiteCtl
-import com.squareup.picasso.Picasso
 
 class RecyclerViewHotAdapter(_sqLiteCtl: SQLiteCtl): RecyclerView.Adapter<RecyclerViewHotAdapter.ItemHolder>() {
 

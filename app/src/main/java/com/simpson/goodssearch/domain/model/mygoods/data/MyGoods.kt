@@ -1,4 +1,4 @@
-package com.simpson.goodssearch.domain.model.mygoods.sqlite
+package com.simpson.goodssearch.domain.model.mygoods.data
 
 import java.util.*
 

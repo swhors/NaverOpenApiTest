@@ -41,7 +41,7 @@ class HomeFragment : Fragment() {
         val root: View = binding.root
         val trendRecyclerView = root.trend_list_view
         val hotRecyclerView = root.hot_list_view
-        trendRecyclerView.adapter = this._spltteCtl?.let { RecyclerViewTrendAdapter(it) }
+        trendRecyclerView.adapter = this._spltteCtl?.let { RecyclerViewTrendAdapter() }
         hotRecyclerView.adapter = this._spltteCtl?.let { RecyclerViewHotAdapter(it) }
         return root
     }

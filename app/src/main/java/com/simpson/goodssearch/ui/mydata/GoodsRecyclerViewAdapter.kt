@@ -1,6 +1,5 @@
 package com.simpson.goodssearch.ui.mydata
 
-import android.app.AlertDialog
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,11 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import com.simpson.goodssearch.R
-import com.simpson.goodssearch.domain.model.mygoods.sqlite.MyGoods
+import com.simpson.goodssearch.domain.model.mygoods.data.MyGoods
 import com.simpson.goodssearch.domain.model.mygoods.sqlite.SQLiteCtl
-import com.simpson.goodssearch.ui.util.DetailAlertDlg
-import com.simpson.goodssearch.ui.util.ItemHolder
-import com.simpson.goodssearch.ui.util.RecyclerViewAdapter
+import com.simpson.goodssearch.ui.lib.DetailAlertDlg
+import com.simpson.goodssearch.ui.lib.ItemHolder
+import com.simpson.goodssearch.ui.lib.RecyclerViewAdapter
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.goods_list_view.view.text_id
 import kotlinx.android.synthetic.main.goods_list_view.view.text_good_id

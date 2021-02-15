@@ -1,4 +1,4 @@
-package com.simpson.goodssearch.ui.util
+package com.simpson.goodssearch.ui.lib
 
 import android.content.Context
 import android.view.LayoutInflater
