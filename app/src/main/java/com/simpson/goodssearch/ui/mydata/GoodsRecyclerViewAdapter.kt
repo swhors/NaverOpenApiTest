@@ -22,6 +22,7 @@ import kotlinx.android.synthetic.main.goods_list_view.view.text_lprice
 import kotlinx.android.synthetic.main.goods_list_view.view.text_mall
 import kotlinx.android.synthetic.main.goods_list_view.view.text_title
 import org.apache.commons.validator.routines.UrlValidator
+import java.util.*
 
 class GoodsRecyclerViewAdapter(_sqLiteCtl: SQLiteCtl): RecyclerViewAdapter() {
 
@@ -102,28 +103,29 @@ class GoodsRecyclerViewAdapter(_sqLiteCtl: SQLiteCtl): RecyclerViewAdapter() {
             popupMenu.show()
         }
 
-        override fun onBindItem(item: MyGoods,
+        override fun onBindItem(item: Any,
                                 context: Context,
                                 itemView: View): Boolean {
-            if (UrlValidator().isValid(item.image_url)) {
+            val myGoods = (item as MyGoods)
+            if (UrlValidator().isValid(myGoods.image_url)) {
                 Picasso.Builder(context).build()
-                    .load(item.image_url)
+                    .load(myGoods.image_url)
                     .into(itemView.image_goods)
-                itemView.text_title.text = item.goods_name
-                itemView.text_mall.text = item.mall_name
-                itemView.text_lprice.text = item.lprice.toString()
-                itemView.text_hprice.text = item.hprice.toString()
-                itemView.text_good_id.text = item.goods_id.toString()
-                itemView.text_id.text = item.id.toString()
-                itemView.text_image_url.text = item.image_url
+                itemView.text_title.text = myGoods.goods_name
+                itemView.text_mall.text = myGoods.mall_name
+                itemView.text_lprice.text = myGoods.lprice.toString()
+                itemView.text_hprice.text = myGoods.hprice.toString()
+                itemView.text_good_id.text = myGoods.goods_id.toString()
+                itemView.text_id.text = myGoods.id.toString()
+                itemView.text_image_url.text = myGoods.image_url
             } else {
                 Log.i("RecyclerViewAdapter-MyGoods", "illegal image URL")
-                sqlLiteCtl.delete(item.id, item.goods_id, item.goods_name, item.mall_name)
+                sqlLiteCtl.delete(myGoods.id, myGoods.goods_id, myGoods.goods_name, myGoods.mall_name)
             }
             return true
         }
 
-        override fun onDblClicked(item: MyGoods) {
+        override fun onDblClicked(item: Any) {
             popupMenu(itemView)
         }
     }

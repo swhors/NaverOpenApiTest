@@ -2,9 +2,11 @@ package com.simpson.goodssearch.ui.lib
 
 import androidx.recyclerview.widget.RecyclerView
 import com.simpson.goodssearch.domain.model.mygoods.data.MyGoods
+import java.util.*
+import kotlin.collections.ArrayList
 
-abstract class RecyclerViewAdapter(): RecyclerView.Adapter<ItemHolder>() {
-    private val itemList = ArrayList<MyGoods>()
+abstract class RecyclerViewAdapter: RecyclerView.Adapter<ItemHolder>() {
+    private val itemList = ArrayList<Any>()
 
     fun clear() {
         itemList.clear()
@@ -17,7 +19,7 @@ abstract class RecyclerViewAdapter(): RecyclerView.Adapter<ItemHolder>() {
         (holder as? ItemHolder)?.onBind(itemList[position])
     }
 
-    fun addItem(item: MyGoods) = itemList.add(item)
+    fun addItem(item: Any) = itemList.add(item)
 
     fun deleteItem(position: Int)  {
         itemList.removeAt(position)

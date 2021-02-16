@@ -4,7 +4,7 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 
-interface ApiServiceBase <T> {
+interface ApiServiceBase {
     companion object {
 
         fun createClient(): OkHttpClient {

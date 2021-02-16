@@ -1,38 +1,30 @@
 package com.simpson.goodssearch.ui.home
 
+import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
 import com.simpson.goodssearch.R
-import kotlinx.android.synthetic.main.trend_item_list_view.view.*
+import com.simpson.goodssearch.domain.model.mygoods.data.Category
+import com.simpson.goodssearch.ui.lib.RecyclerViewAdapter
+import com.simpson.goodssearch.ui.lib.ItemHolder
 
-class RecyclerViewTrendAdapter(): RecyclerView.Adapter<RecyclerViewTrendAdapter.ItemHolder>() {
-    private val itemList = ArrayList<String>()
 
-    class ItemHolder(parent: ViewGroup):RecyclerView.ViewHolder(
+class RecyclerViewTrendAdapter: RecyclerViewAdapter() {
+
+    class TrendItemHolder(parent: ViewGroup): ItemHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.trend_item_list_view, parent, false)
     ) {
-        fun onBind(rows: String){
-            itemView.run {
-                itemView.text_title.text = rows
-            }
+        override fun onBindItem(item: Any, context: Context, itemView: View): Boolean {
+            val category: Category = (item as Category)
+            println("${category.title}::${category.cnt}")
+            return true
+        }
+
+        override fun onDblClicked(item: Any) {
+            TODO("Not yet implemented")
         }
     }
 
-    fun clear() {
-        itemList.clear()
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
-        return ItemHolder(parent)
-    }
-
-    override fun getItemCount(): Int = itemList.size
-
-    override fun onBindViewHolder(holder: ItemHolder, position: Int) {
-        println("RecyclerViewAdapter.onBindViewHolder")
-        (holder as? ItemHolder)?.onBind(itemList[position])
-    }
-
-    fun addItem(item: String) = itemList.add(item)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = TrendItemHolder(parent)
 }

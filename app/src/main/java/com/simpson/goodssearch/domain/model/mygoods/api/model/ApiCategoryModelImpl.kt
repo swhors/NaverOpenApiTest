@@ -7,15 +7,6 @@ import io.reactivex.Single
 
 class ApiCategoryModelImpl(private val service: CategoryApiService): ApiCategoryModel {
     override fun getCategoryAll(): Single<CategoryResponse> {
-        TODO("Not yet implemented")
-        /*
-
-    override fun getDatas(body: String): Single<TrendResponse> {
-        return service.searchTrend(
-            bodyTrend = GsonBuilder().create().fromJson(body, SearchTrend::class.java)
-        )
-    }
-         */
         return service.getCategoryAll()
     }
 

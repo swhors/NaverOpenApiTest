@@ -19,6 +19,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.util.*
 
 
 class FragmentMyData : Fragment() {
@@ -47,7 +48,7 @@ class FragmentMyData : Fragment() {
         println("$results")
 
         (recyclerView.adapter as GoodsRecyclerViewAdapter).clear()
-        for(result in results!!) {
+        results!!.forEach { result ->
             println("$result")
             (recyclerView.adapter as GoodsRecyclerViewAdapter).addItem(result)
         }

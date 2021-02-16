@@ -5,7 +5,7 @@ import android.content.Context
 import android.view.MotionEvent
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.simpson.goodssearch.domain.model.mygoods.data.MyGoods
+import java.util.*
 
 abstract class ItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private var firstClick: Long = 0L
@@ -20,11 +20,11 @@ abstract class ItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         secondClick = 0L
     }
 
-    abstract fun onBindItem(item: MyGoods, context: Context, itemView: View): Boolean
-    abstract fun onDblClicked(item: MyGoods)
+    abstract fun onBindItem(item: Any, context: Context, itemView: View): Boolean
+    abstract fun onDblClicked(item: Any)
 
     @SuppressLint("ClickableViewAccessibility")
-    fun onBind(item: MyGoods){
+    fun onBind(item: Any){
         itemView.run {
             if (onBindItem(item, context, itemView)) {
 

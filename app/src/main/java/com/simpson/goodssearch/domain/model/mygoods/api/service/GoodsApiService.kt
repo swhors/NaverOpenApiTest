@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 
 
-interface GoodsApiService: ApiServiceBase<GoodsApiService>{
+interface GoodsApiService: ApiServiceBase{
 
     @POST("goods/add_goods")
     fun addGoods(
@@ -37,7 +37,7 @@ interface GoodsApiService: ApiServiceBase<GoodsApiService>{
     ): Single<NormalResponse>
 
     companion object {
-        private const val BASE_API_URL = "https://192.168.4.205:5000"
+        private const val BASE_API_URL = "http://192.168.4.205:5000"
 
         fun create(): GoodsApiService {
 

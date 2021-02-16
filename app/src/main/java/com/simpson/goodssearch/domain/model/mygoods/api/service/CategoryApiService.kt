@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 
 
-interface CategoryApiService : ApiServiceBase<CategoryApiService>{
+interface CategoryApiService : ApiServiceBase{
 
     @GET("category/get_categories")
     fun getCategoryAll(): Single<CategoryResponse>
@@ -28,7 +28,7 @@ interface CategoryApiService : ApiServiceBase<CategoryApiService>{
     ): Single<NormalResponse>
 
     companion object {
-        private const val BASE_API_URL = "https://192.168.4.205:5000"
+        private const val BASE_API_URL = "http://192.168.4.205:5000"
 
         fun create(): CategoryApiService {
 

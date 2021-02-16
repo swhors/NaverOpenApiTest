@@ -21,6 +21,8 @@ import android.widget.ListView
 import com.simpson.goodssearch.domain.model.mygoods.data.MyGoods
 import com.simpson.goodssearch.domain.model.mygoods.sqlite.SQLiteCtl
 import com.simpson.goodssearch.domain.model.mygoods.sqlite.SQLiteHelper
+import java.util.*
+import kotlin.collections.ArrayList
 
 class FragmentSearch : Fragment() {
     private lateinit var searchViewModel: FragmentSearchViewModel
@@ -62,6 +64,7 @@ class FragmentSearch : Fragment() {
 
         val maxCntList: ArrayList<Int> = arrayListOf<Int>(10, 20, 30)
 
+        // ListView의 View를 CustomView로 설정
         itemCnt.adapter =
             context?.let { ArrayAdapter<Int>(it, android.R.layout.simple_list_item_single_choice, maxCntList) }
         itemCnt.setOnItemClickListener { parent, _, position, _ ->
