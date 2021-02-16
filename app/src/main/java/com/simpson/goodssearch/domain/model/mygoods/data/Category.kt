@@ -1,12 +1,15 @@
 package com.simpson.goodssearch.domain.model.mygoods.data
 
-data class Category(val id: Long,val title: String, val cnt: Int) {
-    constructor(builder: Builder) : this(builder.id, builder.title!!, builder.cnt)
+data class Category(val title: String, val cnt: Int, val id: Long) {
+    constructor(builder: Builder) : this(builder.title!!, builder.cnt, builder.id)
 
     class Builder {
         var id: Long = 0L
+            private set
         var title: String? = null
+            private set
         var cnt: Int = 0
+            private set
 
         fun id(id: Long) = apply { this.id = id }
         fun title(title: String) = apply { this.title = title }

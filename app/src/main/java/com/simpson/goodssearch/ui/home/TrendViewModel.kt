@@ -24,7 +24,7 @@ class TrendViewModel(private val categoryModel: ApiCategoryModelImpl) : BaseKotl
                 it.run {
                     Log.d(_tag, "documents : ${it}")
                     if (it.categories.size > 0) {
-                        Log.d(_tag, "documents : ${it.categories}")
+//                        Log.d(_tag, "documents : ${it.categories}")
                         _categoriesResponse.postValue(this)
                     }
                 }
